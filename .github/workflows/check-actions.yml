@@ -39,7 +39,7 @@ jobs:
 
           queries:
           - name: Use an in-repository CodeQL pack (run queries in the my-queries directory)
-                uses: ./my-queries
+            uses: ./my-queries
         # queries: security-extended,security-and-quality
 
     - name: Perform CodeQL Analysis
