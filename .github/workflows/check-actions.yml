@@ -35,6 +35,7 @@ jobs:
         languages: actions
         build-mode: none
         config: |
+          disable-default-queries: true
           queries:
           - name: Use an in-repository CodeQL pack (run queries in the my-queries directory)
             uses: ./actions-queries/pull_request_target.ql
