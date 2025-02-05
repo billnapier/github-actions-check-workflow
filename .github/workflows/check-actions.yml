@@ -37,7 +37,7 @@ jobs:
         config: |
           queries:
           - name: Use an in-repository CodeQL pack (run queries in the my-queries directory)
-            uses: ./action-queries
+            uses: ./action-queries/pull_request_target.ql
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
