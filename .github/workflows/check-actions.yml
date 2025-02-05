@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]
+      branches: [ "master" ]]
 
 jobs:
   analyze:
@@ -35,12 +35,9 @@ jobs:
         languages: actions
         build-mode: none
         config: |
-          disable-default-queries: true
-
           queries:
           - name: Use an in-repository CodeQL pack (run queries in the my-queries directory)
-            uses: ./my-queries
-        # queries: security-extended,security-and-quality
+            uses: ./action-queries
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
