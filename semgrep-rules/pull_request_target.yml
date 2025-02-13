@@ -1,0 +1,20 @@
+rules:
+  - id: allowed-unsecure-commands
+    languages:
+      - yaml
+    severity: WARNING
+    message: pull_request_target can be harmful and a path for vulns.  Please only use by exception
+    metadata:
+      category: security
+      technology:
+        - github-actions
+      subcategory:
+        - vuln
+      likelihood: LOW
+      impact: MEDIUM
+      confidence: MEDIUM
+    patterns:
+      - pattern-either:
+          - patterns:
+              - pattern-inside: "{on: ...}"
+              - pattern: pull_request_target
