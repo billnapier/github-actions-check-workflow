@@ -1,0 +1,7 @@
+---
+library: false
+warnOnImplicitThis: false
+name: actions-queries
+version: 0.0.1
+dependencies:
+  codeql/actions-all: '*'
