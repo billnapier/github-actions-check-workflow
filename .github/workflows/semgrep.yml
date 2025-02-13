@@ -30,21 +30,31 @@ jobs:
         uses: actions/checkout@v4
     
       - name: Run Auto semgrep scan
-        run: semgrep scan --sarif --config auto > semgrep-results.sarif
+        run: semgrep scan --sarif --config auto > semgrep-results-auto.sarif
     
       - name: Run Custom semgrep scan
-        run: semgrep scan --config semgrep-rules >> semgrep-results.sarif
+        run: semgrep scan --config semgrep-rules >> semgrep-results-custom.sarif
     
-      - name: Save SARIF results as artifact
+      - name: Save auto SARIF results as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: semgrep-scan-results
-          path: semgrep-results.sarif
+          name: semgrep-scan-results-auto
+          path: semgrep-results-auto.sarif
 
-      - name: Upload SARIF result to the GitHub Security Dashboard
+      - name: Save auto SARIF results as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-scan-results-custom
+          path: semgrep-results-custom.sarif
+
+      - name: Upload Auto SARIF result to the GitHub Security Dashboard
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: semgrep-results.sarif
+          sarif_file: semgrep-results-auto.sarif
         if: always()
 
-
+      - name: Upload Custom SARIF result to the GitHub Security Dashboard
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep-results-custom.sarif
+        if: always()
