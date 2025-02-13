@@ -33,7 +33,7 @@ jobs:
         run: semgrep scan --sarif --config auto > semgrep-results-auto.sarif
     
       - name: Run Custom semgrep scan
-        run: semgrep scan --config semgrep-rules >> semgrep-results-custom.sarif
+        run: semgrep scan --sarif --config semgrep-rules >> semgrep-results-custom.sarif
     
       - name: Save auto SARIF results as artifact
         uses: actions/upload-artifact@v4
