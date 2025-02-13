@@ -1,0 +1,24 @@
+# GitHub actions workflow.
+# https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
+
+# https://github.com/superbrothers/close-pull-request
+name: Banned Pull Request
+
+on:
+  pull_request_target:
+    types: [opened]
+
+jobs:
+  semgrep:
+    name: semgrep-oss/scan
+    runs-on: ubuntu-latest
+
+    container:
+      image: semgrep/semgrep
+
+    # Skip any PR created by dependabot to avoid permission issues:
+    if: (github.actor != 'dependabot[bot]')
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: semgrep scan --config auto
